@@ -42,8 +42,9 @@ function update_buttons(data, index) {
     data['room_order'].forEach(function(room_id) {
         if (only_normal_rooms && !NORMAL_ROOMS.includes(Number(room_id))) {
             return;
-        }
-        let row = '<tr><td>' + data['room_names'][room_id] + '</td>';
+        }10
+        var link = 'https://www.lsf.tu-dortmund.de/qisserver/rds?state=wplan&act=Raum&pool=Raum&P.subc=plan&raum.rgid=' + room_id;
+        let row = '<tr><td><a title="im LSF öffnen" class="lsf-link" href="' + link + '">🔗</a> ' + data['room_names'][room_id] + '</td>';
         let slots = [];
         data['free_rooms'][room_id][current_day].forEach(function(slot) {
             if (slot[0] === 2 && slot[1] === 49) {
