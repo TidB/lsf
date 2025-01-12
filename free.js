@@ -10,6 +10,13 @@ function to_time(int) {
     return (8 + Math.floor((int-2) / 4)).toString().padStart(2, '0') + ':' + (((int-2) % 4) * 15).toString().padStart(2, '0');
 }
 
+function time_to_slot() {
+    var date = new Date();
+    var dec = date.getHours() + (date.getMinutes() / 60);
+    var adjusted = Math.floor((dec - 7.5) * 4);
+    return adjusted;
+}
+
 function main(data) {
     document.getElementById('updated').innerHTML = data['updated'];
     roomselect = document.getElementById('room-select').addEventListener("change", (event) => update_buttons(data, dayselect.selectedIndex));
@@ -30,8 +37,8 @@ function update_buttons(data, index) {
     only_normal_rooms = document.getElementById('room-select').selectedIndex == 0;
     table.innerHTML = "";
     let current_day = index;//(index - 1) % 7
-    console.log(current_day)
     table = document.getElementById('table');
+    current_hour_slot = time_to_slot();
     data['room_order'].forEach(function(room_id) {
         if (only_normal_rooms && !NORMAL_ROOMS.includes(Number(room_id))) {
             return;
@@ -42,7 +49,13 @@ function update_buttons(data, index) {
             if (slot[0] === 2 && slot[1] === 49) {
                 slots.push('<i>ganztägig frei</i>')
             } else {
-                slots.push(to_time(slot[0]) + '–' + to_time(slot[1]+1));
+                var span = to_time(slot[0]) + '–' + to_time(slot[1]+1);
+                if (current_hour_slot >= slot[0] && (current_hour_slot + 4) <= slot[1]) {
+                    span = '<strong>' + span + '</strong>';
+                } else if ((current_hour_slot + 2) >= slot[1]) {
+                    span = '<span class="faded-time">' + span + '</span>';
+                }
+                slots.push(span)
             }
         });
         if (slots.length === 0) {

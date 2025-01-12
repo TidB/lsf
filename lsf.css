@@ -35,3 +35,7 @@ table {
     width: 100%;
     table-layout: fixed;
 }
+
+.faded-time {
+    color: #666666;
+}
