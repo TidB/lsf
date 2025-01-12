@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lsf | Mismeasured Magic</title>
+</head>
+<body>
+<div id="container">
+    <div id="top-bar">
+        <span class="bar-item">/</span>
+        <a class="bar-item" href="/">mismeasured</a>
+        <span class="bar-item">/</span>
+        <a class="bar-item" href="/lsf">lsf</a>
+    </div>
+
+    <div id="content">
+        <!--<input type="checkbox" id="wochenansicht">
+        <label for="wochenansicht">Wochenansicht</label>-->
+        <select id="day-select" class="dropdown"></select>
+        <select id="room-select" class="dropdown">
+            <option>Normale Projekträume</option>
+            <option>Alle Projekt- und Seminarräume</option>
+        </select>
+        <div class="rooms">
+        <table class="language-table">
+                <thead>
+                <tr>
+                    <th>Raum</th>
+                    <th>Freie Slots</th>
+                </tr>
+                </thead>
+                <tbody id="table">
+                </tbody>
+        </table>
+        </div>
+        Nur Slots von über einer Stunde und zwischen 08:00 und 20:00 werden angezeigt.<br>
+        "Normale Projekträume" sollten alle Räume mit der grünen Banderole an den Türen sein.<br>
+        Letztes Update: <span id="updated"></span>
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" href="/main.css">
+<link rel="stylesheet" type="text/css" href="/lsf/lsf.css">
+<script src="free.js"></script>
+</body>
+</html>
