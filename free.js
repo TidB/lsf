@@ -28,7 +28,7 @@ function main(data) {
         dayselect.innerHTML += '<option>' + day.toLocaleDateString('de-DE', {weekday: 'long', day: 'numeric', month: 'short'}) + '</option>'
     }
 
-    let current_day = Math.max((new Date()).getDay(), 5) - 1;
+    let current_day = Math.min((new Date()).getDay(), 5) - 1;
     dayselect.selectedIndex = current_day;
     update_buttons(data, current_day.toString());
 }
